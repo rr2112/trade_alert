@@ -7,6 +7,7 @@ def send_email(mail_content):
     sender_address = os.environ.get('email_sender_user')
     sender_pass = os.environ.get('email_sender_password')
     receiver_address = os.environ.get('email_sender_user')
+    # +', '+'rakeshreddy2112@gmail.com'+', '+'shivasaibalramreddy@gmail.com'
     message = MIMEMultipart()
     message['From'] = sender_address
     message['To'] = receiver_address
@@ -16,6 +17,6 @@ def send_email(mail_content):
     session.starttls() 
     session.login(sender_address, sender_pass)
     text = message.as_string()
-    session.sendmail(sender_address, receiver_address, text)
+    session.sendmail(sender_address, receiver_address.split(','), text)
     session.quit()
     print('Mail Sent')
